@@ -12,8 +12,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",
-    "format": "prettier --write .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace",
-    "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace"
+    "format": "prettier --write .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace .github",
+    "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace .github"
   },
   "dependencies": {
     "astro": "^7.2.0"
