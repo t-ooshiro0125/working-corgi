@@ -32,5 +32,16 @@
 
 ## 公開
 
-- GitHub Pages の設定は GitHub Actions で管理する。
+### 初回設定
+
+- GitHub Pages のデプロイは GitHub Actions で管理する。
+- 初回の Pages デプロイ前に、GitHub の **Settings → Pages → Build and deployment → Source** を **GitHub Actions** に一度だけ設定する。
+
+### デプロイと確認
+
 - 公開前に本番ビルドを確認し、リンク、画像、サイトのベースパスが GitHub Pages 上でも正しいことを確認する。
+- 公開後は、GitHub Pages の公開 URL でサイトと静的アセットが表示されることを確認する。
+
+### トラブルシューティング
+
+- `actions/configure-pages` が Pages サイトを取得できず失敗した場合は、この公開元設定を確認してから、失敗した workflow を再実行するか次回の `main` push を待つ。
