@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# GitHub Issues Sync extension state
+.vscode/github-issues/

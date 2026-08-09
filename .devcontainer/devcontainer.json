@@ -17,7 +17,8 @@
         "openai.chatgpt@26.707.91948",
         "astro-build.astro-vscode",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "hiroyannnn.vscode-github-issues-sync"
       ],
       "settings": {
         "editor.formatOnSave": true,
