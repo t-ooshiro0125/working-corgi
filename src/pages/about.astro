@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="About | Working Corgi"
+  description="Corgi の経歴、得意分野、現在取り組んでいることを紹介します。"
+>
+  <div class="about">
+    <section class="about__hero">
+      <h1 class="about__title">About</h1>
+      <p class="about__lead">Corgi について、もう少し詳しく。</p>
+    </section>
+
+    <section class="about__section">
+      <h2 class="about__heading">プロフィール</h2>
+      <p>
+        仕事ではWebエンジニアをしています。なんだかんだRailsを10年くらい触っていますが、今でも分からないことだらけです。最近は個人開発が楽しくて、欲しいものや思いついたものを好き勝手作っています（まだ何も完成していませんが）。
+      </p>
+      <p>
+        器用貧乏気味で、気になったところをあれこれ触りがちです。仕組みを理解するのが好きで、分からないままだと少しイライラします。
+      </p>
+      <p>仕事も個人開発も、AIに助けてもらいながらぼちぼちやっています。</p>
+    </section>
+
+    <section class="about__section">
+      <h2 class="about__heading">できること</h2>
+      <dl class="about__skills">
+        <div class="about__skill">
+          <dt class="about__skill-name">Web開発</dt>
+          <dd>新規開発、既存機能の改修・保守、日々の小さな改善。</dd>
+        </div>
+        <div class="about__skill">
+          <dt class="about__skill-name">Rails</dt>
+          <dd>
+            Railsは気づけば10年ほど。バックエンドを中心に、フロントエンドからインフラまで幅広く触ってきました。器用貧乏です。
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="about__section">
+      <h2 class="about__heading">今取り組んでいること</h2>
+      <p>
+        個人開発では、キャラクターと会話するアプリと、この個人サイトを作っています。
+      </p>
+    </section>
+
+    <section class="about__section">
+      <h2 class="about__heading">好きなこと</h2>
+      <p>トモダチコレクションをのんびり遊んでいます。</p>
+      <p>
+        最近はVTuberの配信をよく観ます。ぺこーら、あずきち、おかゆんあたり。
+      </p>
+    </section>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .about {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .about__hero {
+    padding-block: var(--space-2xl);
+  }
+
+  .about__section {
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about__heading {
+    margin-bottom: var(--space-md);
+    font-size: 1.25rem;
+  }
+
+  .about__skills {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .about__skill {
+    padding: var(--space-md);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius-sm);
+  }
+
+  .about__skill-name {
+    margin-bottom: var(--space-xs);
+    color: var(--color-accent-strong);
+    font-weight: 700;
+  }
+</style>

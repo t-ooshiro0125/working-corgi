@@ -16,6 +16,9 @@ import Layout from "../layouts/Layout.astro";
       <p>
         コミュニケーションを取るのが苦手ですが、嫌いではないです。下手なだけです。よろしくお願いします。
       </p>
+      <a class="home__more-link" href={`${import.meta.env.BASE_URL}/about/`}>
+        About を見る
+      </a>
     </section>
 
     <section class="home__section">
@@ -123,6 +126,25 @@ import Layout from "../layouts/Layout.astro";
       color: var(--color-surface);
       background: var(--color-accent-strong);
       transform: translateY(-0.125rem);
+    }
+  }
+
+  .home__more-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: var(--space-md);
+    color: var(--color-accent-strong);
+    font-size: 0.875rem;
+    font-weight: 700;
+
+    &::after {
+      margin-left: var(--space-xs);
+      content: "→";
+      transition: transform 160ms ease;
+    }
+
+    &:hover::after {
+      transform: translateX(0.25rem);
     }
   }
 </style>
