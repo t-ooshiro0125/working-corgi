@@ -30,6 +30,50 @@
   git diff --cached
   ```
 
+## ブランチと Pull Request
+
+- `main` への直接 push はしない。Issue に対応する変更はブランチで行い、Pull Request を通して `main` へマージする。
+- 新しい作業を始める前に、現在の作業ツリーがクリーンであることを確認する。未コミットの変更がある場合は、対応中の作業としてコミットするか、安全に退避してから切り替える。
+
+### 命名規則
+
+| 作業                     | ブランチ名                      | 例                     |
+| ------------------------ | ------------------------------- | ---------------------- |
+| Issue に対応する変更     | `<種類>/<Issue番号>-<短い説明>` | `feat/10-about-page`   |
+| Issue を作らない文書変更 | `docs/<短い説明>`               | `docs/branch-workflow` |
+
+- `<種類>` にはコミットメッセージと同じ `feat`、`fix`、`docs`、`chore`、`refactor`、`test`、`ci` を使う。
+
+### 新しい Issue に着手する手順
+
+```sh
+# 現在の変更がないことを確認する
+git status --short
+
+# main を最新化する
+git switch main
+git pull --ff-only origin main
+
+# Issue 用の作業ブランチを作成する
+git switch -c <種類>/<Issue番号>-<短い説明>
+```
+
+### Push と Pull Request
+
+実装とローカル検証が完了したら、変更をコミットしてから次を実行する。
+
+```sh
+# 初回だけ。現在のブランチを push し、リモート追跡ブランチを設定する
+git push -u origin HEAD
+
+# 2回目以降
+git push
+```
+
+- `HEAD` は現在チェックアウトしているブランチを指す。ブランチ名を手入力する必要がなく、入力ミスを防げる。
+- push 後、`main` 宛ての Pull Request を作成する。
+- CI の成功とレビュー完了後、GitHub 上で squash merge する。
+
 ## 公開
 
 ### 初回設定
