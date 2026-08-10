@@ -1,27 +1,100 @@
+---
+import "../styles/index.scss";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Working Corgi", description = "Corgi の個人サイトです。" } =
+  Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link
       rel="icon"
       type="image/svg+xml"
-      href={`${import.meta.env.BASE_URL}/favicon.svg`}
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
     />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
   <body>
-    <slot />
-  </body>
-</html>
+    <div class="site">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a class="site-header__name" href={import.meta.env.BASE_URL}>
+            Working Corgi
+          </a>
+        </div>
+      </header>
 
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
+      <main class="site-main">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <p class="site-footer__copyright">
+            © {new Date().getFullYear()} Working Corgi
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+
+  <style lang="scss">
+    .site {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100svh;
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .site-header__inner {
+      width: 100%;
+      max-width: var(--content-width);
+      margin-inline: auto;
+      padding: var(--space-lg) var(--content-padding);
+    }
+
+    .site-header__name {
+      color: var(--color-text);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .site-main {
+      width: 100%;
+      max-width: var(--content-width);
+      margin-inline: auto;
+      padding: var(--space-2xl) var(--content-padding);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .site-footer__inner {
+      width: 100%;
+      max-width: var(--content-width);
+      margin-inline: auto;
+      padding: var(--space-lg) var(--content-padding);
+    }
+
+    .site-footer__copyright {
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</html>
