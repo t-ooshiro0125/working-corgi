@@ -42,7 +42,7 @@
 | Issue に対応する変更     | `<種類>/<Issue番号>-<短い説明>` | `feat/10-about-page`   |
 | Issue を作らない文書変更 | `docs/<短い説明>`               | `docs/branch-workflow` |
 
-- `<種類>` にはコミットメッセージと同じ `feat`、`fix`、`docs`、`chore`、`refactor`、`test`、`ci` を使う。
+- `<種類>` には、[コミットメッセージ](conventions.md#コミットメッセージ)で定めた種類を使う。
 
 ### 新しい Issue に着手する手順
 
