@@ -8,6 +8,11 @@ interface Props {
 
 const { title = "Working Corgi", description = "Corgi の個人サイトです。" } =
   Astro.props;
+
+const basePath = import.meta.env.BASE_URL.replace(/\/+$/, "");
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isHome = currentPath === basePath;
+const isAbout = currentPath === `${basePath}/about`;
 ---
 
 <!doctype html>
@@ -18,9 +23,9 @@ const { title = "Working Corgi", description = "Corgi の個人サイトです�
     <link
       rel="icon"
       type="image/svg+xml"
-      href={`${import.meta.env.BASE_URL}favicon.svg`}
+      href={`${import.meta.env.BASE_URL}/favicon.svg`}
     />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -32,6 +37,22 @@ const { title = "Working Corgi", description = "Corgi の個人サイトです�
           <a class="site-header__name" href={import.meta.env.BASE_URL}>
             Working Corgi
           </a>
+          <nav class="site-header__nav" aria-label="メインナビゲーション">
+            <a
+              class="site-header__link"
+              href={import.meta.env.BASE_URL}
+              aria-current={isHome ? "page" : undefined}
+            >
+              Home
+            </a>
+            <a
+              class="site-header__link"
+              href={`${import.meta.env.BASE_URL}/about/`}
+              aria-current={isAbout ? "page" : undefined}
+            >
+              About
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -61,6 +82,10 @@ const { title = "Working Corgi", description = "Corgi の個人サイトです�
     }
 
     .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
       width: 100%;
       max-width: var(--content-width);
       margin-inline: auto;
@@ -72,6 +97,32 @@ const { title = "Working Corgi", description = "Corgi の個人サイトです�
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.04em;
+    }
+
+    .site-header__nav {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .site-header__link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.25rem;
+      padding-inline: var(--space-sm);
+      color: var(--color-text-muted);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 700;
+
+      &:hover {
+        color: var(--color-text);
+        background: var(--color-accent-soft);
+      }
+    }
+
+    .site-header__link[aria-current="page"] {
+      color: var(--color-text);
+      background: var(--color-accent-soft);
     }
 
     .site-main {
