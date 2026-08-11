@@ -3,18 +3,30 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  description="Corgi の自己紹介、制作物、技術記事を掲載する個人サイトです。"
+  description="ACorgi0125 の自己紹介、制作物、技術記事を掲載する個人サイトです。"
 >
   <div class="home">
     <section class="home__hero">
-      <h1 class="home__title">Corgi</h1>
-      <p class="home__tagline">末っ子気質な我儘内弁慶です。</p>
+      <div class="home__hero-copy">
+        <h1 class="home__title">ACorgi0125</h1>
+        <p class="home__tagline">
+          Webエンジニアとして働きながら、個人開発をしています。
+        </p>
+      </div>
+
+      <img
+        class="home__hero-image"
+        src={`${import.meta.env.BASE_URL}/corgi-hero.webp`}
+        alt="ノートパソコンで作業するコーギーのイラスト"
+        width="1536"
+        height="1024"
+      />
     </section>
 
     <section class="home__section">
       <h2 class="home__heading">自己紹介</h2>
       <p>
-        コミュニケーションを取るのが苦手ですが、嫌いではないです。下手なだけです。よろしくお願いします。
+        Web開発を中心に仕事をしながら、個人でもアプリやこのサイトを作っています。
       </p>
       <a class="home__more-link" href={`${import.meta.env.BASE_URL}/about/`}>
         About を見る
@@ -23,12 +35,14 @@ import Layout from "../layouts/Layout.astro";
 
     <section class="home__section">
       <h2 class="home__heading">今取り組んでいること</h2>
-      <p>個人開発、トモコレ</p>
+      <p>
+        キャラクターと会話するアプリと、この個人サイトの開発に取り組んでいます。
+      </p>
     </section>
 
     <section class="home__section">
       <h2 class="home__heading">好きなこと</h2>
-      <p>ゲームとVTuber（ぺこーら/あずきち/おかゆが好きです）</p>
+      <p>トモダチコレクションや、YouTubeの動画を観るのが好きです。</p>
     </section>
 
     <section class="home__section">
@@ -56,7 +70,33 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .home__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.9fr);
+    align-items: center;
+    gap: var(--space-xl);
     padding-block: var(--space-2xl);
+  }
+
+  @media (max-width: 40rem) {
+    .home__hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .home__hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 32rem;
+    justify-self: end;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (max-width: 40rem) {
+    .home__hero-image {
+      max-width: 24rem;
+      justify-self: center;
+    }
   }
 
   .home__section {
@@ -81,9 +121,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .home__title {
-    font-size: clamp(3rem, 10vw, 5.5rem);
-    letter-spacing: -0.06em;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.04em;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .home__tagline {

@@ -6,8 +6,10 @@ interface Props {
   description?: string;
 }
 
-const { title = "Working Corgi", description = "Corgi の個人サイトです。" } =
-  Astro.props;
+const {
+  title = "Working Corgi",
+  description = "ACorgi0125 の個人サイトです。",
+} = Astro.props;
 
 const basePath = import.meta.env.BASE_URL.replace(/\/+$/, "");
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
@@ -22,20 +24,43 @@ const isAbout = currentPath === `${basePath}/about`;
     <meta name="viewport" content="width=device-width" />
     <link
       rel="icon"
-      type="image/svg+xml"
-      href={`${import.meta.env.BASE_URL}/favicon.svg`}
+      type="image/png"
+      href={`${import.meta.env.BASE_URL}/corgi-favicon-black.png`}
+      media="(prefers-color-scheme: light)"
     />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
+    <link
+      rel="icon"
+      type="image/png"
+      href={`${import.meta.env.BASE_URL}/corgi-favicon-white.png`}
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
   <body>
     <div class="site">
+      <img
+        class="site__paw-prints"
+        src={`${import.meta.env.BASE_URL}/corgi-paw-prints.svg`}
+        alt=""
+      />
+
       <header class="site-header">
         <div class="site-header__inner">
-          <a class="site-header__name" href={import.meta.env.BASE_URL}>
-            Working Corgi
+          <a
+            class="site-header__brand"
+            href={import.meta.env.BASE_URL}
+            aria-label="Working Corgi"
+          >
+            <img
+              class="site-header__logo"
+              src={`${import.meta.env.BASE_URL}/corgi-favicon-black.webp`}
+              alt=""
+              width="512"
+              height="512"
+            />
+            <span class="site-header__name">Working Corgi</span>
           </a>
           <nav class="site-header__nav" aria-label="メインナビゲーション">
             <a
@@ -72,13 +97,26 @@ const isAbout = currentPath === `${basePath}/about`;
 
   <style lang="scss">
     .site {
+      position: relative;
       display: grid;
       grid-template-rows: auto 1fr auto;
       min-height: 100svh;
     }
 
+    .site__paw-prints {
+      position: absolute;
+      right: clamp(1rem, 4vw, 4rem);
+      bottom: clamp(1rem, 4vw, 4rem);
+      z-index: 0;
+      width: clamp(8rem, 20vw, 16rem);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
     .site-header {
       border-bottom: 1px solid var(--color-border);
+      position: relative;
+      z-index: 1;
     }
 
     .site-header__inner {
@@ -92,6 +130,25 @@ const isAbout = currentPath === `${basePath}/about`;
       padding: var(--space-lg) var(--content-padding);
     }
 
+    @media (max-width: 25rem) {
+      .site-header__inner {
+        gap: var(--space-sm);
+        padding-inline: var(--space-md);
+      }
+    }
+
+    .site-header__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-text);
+    }
+
+    .site-header__logo {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
     .site-header__name {
       color: var(--color-text);
       font-size: 1rem;
@@ -99,9 +156,21 @@ const isAbout = currentPath === `${basePath}/about`;
       letter-spacing: 0.04em;
     }
 
+    @media (max-width: 25rem) {
+      .site-header__name {
+        display: none;
+      }
+    }
+
     .site-header__nav {
       display: flex;
       gap: var(--space-sm);
+    }
+
+    @media (max-width: 25rem) {
+      .site-header__nav {
+        gap: 0;
+      }
     }
 
     .site-header__link {
@@ -120,6 +189,12 @@ const isAbout = currentPath === `${basePath}/about`;
       }
     }
 
+    @media (max-width: 25rem) {
+      .site-header__link {
+        padding-inline: var(--space-xs);
+      }
+    }
+
     .site-header__link[aria-current="page"] {
       color: var(--color-text);
       background: var(--color-accent-soft);
@@ -130,10 +205,14 @@ const isAbout = currentPath === `${basePath}/about`;
       max-width: var(--content-width);
       margin-inline: auto;
       padding: var(--space-2xl) var(--content-padding);
+      position: relative;
+      z-index: 1;
     }
 
     .site-footer {
       border-top: 1px solid var(--color-border);
+      position: relative;
+      z-index: 1;
     }
 
     .site-footer__inner {

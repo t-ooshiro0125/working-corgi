@@ -4,23 +4,34 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout
   title="About | Working Corgi"
-  description="Corgi の経歴、得意分野、現在取り組んでいることを紹介します。"
+  description="ACorgi0125 の経歴、得意分野、現在取り組んでいることを紹介します。"
 >
   <div class="about">
     <section class="about__hero">
-      <h1 class="about__title">About</h1>
-      <p class="about__lead">Corgi について、もう少し詳しく。</p>
+      <div class="about__hero-copy">
+        <h1 class="about__title">About</h1>
+        <p class="about__lead">ACorgi0125 について、もう少し詳しく。</p>
+      </div>
+
+      <img
+        class="about__avatar"
+        src={`${import.meta.env.BASE_URL}/corgi-avatar-calm.webp`}
+        alt=""
+        width="1536"
+        height="1024"
+      />
     </section>
 
     <section class="about__section">
       <h2 class="about__heading">プロフィール</h2>
       <p>
-        仕事ではWebエンジニアをしています。なんだかんだRailsを10年くらい触っていますが、今でも分からないことだらけです。最近は個人開発が楽しくて、欲しいものや思いついたものを好き勝手作っています（まだ何も完成していませんが）。
+        Webエンジニアとして、主にRuby on
+        Railsを使ったWeb開発に携わっています。バックエンドを中心に、必要に応じてフロントエンドやインフラにも取り組んできました。
       </p>
       <p>
-        器用貧乏気味で、気になったところをあれこれ触りがちです。仕組みを理解するのが好きで、分からないままだと少しイライラします。
+        業務では新規開発、既存機能の改修・保守、継続的な改善に関わっています。個人では、気になったアイデアを形にするための開発を続けています。
       </p>
-      <p>仕事も個人開発も、AIに助けてもらいながらぼちぼちやっています。</p>
+      <p>仕事でも個人開発でも、AIを活用しながら学びと改善を重ねています。</p>
     </section>
 
     <section class="about__section">
@@ -33,7 +44,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="about__skill">
           <dt class="about__skill-name">Rails</dt>
           <dd>
-            Railsは気づけば10年ほど。バックエンドを中心に、フロントエンドからインフラまで幅広く触ってきました。器用貧乏です。
+            Railsを約10年経験しています。バックエンドを中心に、フロントエンドからインフラまで幅広く取り組んできました。
           </dd>
         </div>
       </dl>
@@ -48,9 +59,8 @@ import Layout from "../layouts/Layout.astro";
 
     <section class="about__section">
       <h2 class="about__heading">好きなこと</h2>
-      <p>トモダチコレクションをのんびり遊んでいます。</p>
       <p>
-        最近はVTuberの配信をよく観ます。ぺこーら、あずきち、おかゆんあたり。
+        トモダチコレクションを遊んだり、YouTubeの動画を観たりして過ごしています。
       </p>
     </section>
   </div>
@@ -63,7 +73,33 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .about__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.65fr);
+    align-items: center;
+    gap: var(--space-xl);
     padding-block: var(--space-2xl);
+  }
+
+  @media (max-width: 40rem) {
+    .about__hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .about__avatar {
+    width: 100%;
+    height: auto;
+    max-width: 22rem;
+    justify-self: end;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (max-width: 40rem) {
+    .about__avatar {
+      max-width: 20rem;
+      justify-self: center;
+    }
   }
 
   .about__section {
