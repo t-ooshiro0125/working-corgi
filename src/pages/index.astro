@@ -16,7 +16,7 @@ import Layout from "../layouts/Layout.astro";
 
       <img
         class="home__hero-image"
-        src={`${import.meta.env.BASE_URL}/corgi-hero.webp`}
+        src={`${import.meta.env.BASE_URL}corgi-hero.webp`}
         alt="ノートパソコンで作業するコーギーのイラスト"
         width="1536"
         height="1024"
@@ -28,7 +28,7 @@ import Layout from "../layouts/Layout.astro";
       <p>
         Web開発を中心に仕事をしながら、個人でもアプリやこのサイトを作っています。
       </p>
-      <a class="home__more-link" href={`${import.meta.env.BASE_URL}/about/`}>
+      <a class="home__more-link" href={`${import.meta.env.BASE_URL}about/`}>
         About を見る
       </a>
     </section>
@@ -53,9 +53,19 @@ import Layout from "../layouts/Layout.astro";
             class="home__link"
             href="https://github.com/t-ooshiro0125"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             GitHub
+          </a>
+        </li>
+        <li>
+          <a
+            class="home__link"
+            href="https://x.com/working_corgi"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            X
           </a>
         </li>
       </ul>
