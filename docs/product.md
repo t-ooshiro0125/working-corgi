@@ -41,7 +41,7 @@
 ### 外部リンク
 
 - GitHub: https://github.com/t-ooshiro0125
-- SNS: （掲載しない）
+- SNS: https://x.com/working_corgi
 - その他: （掲載しない）
 
 ## コンテンツの方針
