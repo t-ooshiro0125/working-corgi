@@ -48,7 +48,11 @@ const isAbout = currentPath === `${basePath}/about`;
 
       <header class="site-header">
         <div class="site-header__inner">
-          <a class="site-header__brand" href={import.meta.env.BASE_URL}>
+          <a
+            class="site-header__brand"
+            href={import.meta.env.BASE_URL}
+            aria-label="Working Corgi"
+          >
             <img
               class="site-header__logo"
               src={`${import.meta.env.BASE_URL}/corgi-favicon-black.webp`}
@@ -126,6 +130,13 @@ const isAbout = currentPath === `${basePath}/about`;
       padding: var(--space-lg) var(--content-padding);
     }
 
+    @media (max-width: 25rem) {
+      .site-header__inner {
+        gap: var(--space-sm);
+        padding-inline: var(--space-md);
+      }
+    }
+
     .site-header__brand {
       display: inline-flex;
       align-items: center;
@@ -145,9 +156,21 @@ const isAbout = currentPath === `${basePath}/about`;
       letter-spacing: 0.04em;
     }
 
+    @media (max-width: 25rem) {
+      .site-header__name {
+        display: none;
+      }
+    }
+
     .site-header__nav {
       display: flex;
       gap: var(--space-sm);
+    }
+
+    @media (max-width: 25rem) {
+      .site-header__nav {
+        gap: 0;
+      }
     }
 
     .site-header__link {
@@ -163,6 +186,12 @@ const isAbout = currentPath === `${basePath}/about`;
       &:hover {
         color: var(--color-text);
         background: var(--color-accent-soft);
+      }
+    }
+
+    @media (max-width: 25rem) {
+      .site-header__link {
+        padding-inline: var(--space-xs);
       }
     }
 
