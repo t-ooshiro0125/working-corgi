@@ -16,6 +16,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const navigation = [
   { label: "Home", href: import.meta.env.BASE_URL },
   { label: "About", href: `${import.meta.env.BASE_URL}about/` },
+  { label: "Works", href: `${import.meta.env.BASE_URL}works/` },
 ].map((item) => {
   const path =
     new URL(item.href, Astro.url).pathname.replace(/\/+$/, "") || "/";
@@ -137,13 +138,6 @@ const navigation = [
       padding: var(--space-lg) var(--content-padding);
     }
 
-    @media (max-width: 25rem) {
-      .site-header__inner {
-        gap: var(--space-sm);
-        padding-inline: var(--space-md);
-      }
-    }
-
     .site-header__brand {
       display: inline-flex;
       align-items: center;
@@ -163,21 +157,9 @@ const navigation = [
       letter-spacing: 0.04em;
     }
 
-    @media (max-width: 25rem) {
-      .site-header__name {
-        display: none;
-      }
-    }
-
     .site-header__nav {
       display: flex;
       gap: var(--space-sm);
-    }
-
-    @media (max-width: 25rem) {
-      .site-header__nav {
-        gap: 0;
-      }
     }
 
     .site-header__link {
@@ -193,12 +175,6 @@ const navigation = [
       &:hover {
         color: var(--color-text);
         background: var(--color-accent-soft);
-      }
-    }
-
-    @media (max-width: 25rem) {
-      .site-header__link {
-        padding-inline: var(--space-xs);
       }
     }
 
@@ -232,6 +208,25 @@ const navigation = [
     .site-footer__copyright {
       color: var(--color-text-muted);
       font-size: 0.875rem;
+    }
+
+    @media (max-width: 30rem) {
+      .site-header__inner {
+        gap: var(--space-sm);
+        padding-inline: var(--space-md);
+      }
+
+      .site-header__name {
+        display: none;
+      }
+
+      .site-header__nav {
+        gap: 0;
+      }
+
+      .site-header__link {
+        padding-inline: var(--space-xs);
+      }
     }
   </style>
 </html>

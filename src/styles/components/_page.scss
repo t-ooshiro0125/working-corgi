@@ -1,0 +1,11 @@
+.page__title {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.page__lead {
+  margin-top: var(--space-md);
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+}
