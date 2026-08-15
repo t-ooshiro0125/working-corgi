@@ -1,0 +1,104 @@
+---
+import { getCollection } from "astro:content";
+
+import NoteMeta from "../components/NoteMeta.astro";
+import Layout from "../layouts/Layout.astro";
+
+const publishedNotes = (
+  await getCollection("notes", ({ data }) => !data.draft)
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout
+  title="Notes | Working Corgi"
+  description="ACorgi0125 の技術メモ、雑記、Development Log を掲載しています。"
+>
+  <div class="notes">
+    <header class="notes__hero">
+      <p class="page__eyebrow">MY NOTES</p>
+      <h1 class="page__title">Notes</h1>
+      <p class="page__lead">
+        技術メモや日々の記録、開発の過程で得た学びを残しています。
+      </p>
+    </header>
+
+    <ul class="notes__list">
+      {
+        publishedNotes.map((note) => (
+          <li class="notes__item">
+            <article class="notes__article">
+              <NoteMeta
+                category={note.data.category}
+                pubDate={note.data.pubDate}
+              />
+
+              <h2 class="notes__title">
+                <a href={`${import.meta.env.BASE_URL}notes/${note.id}/`}>
+                  {note.data.title}
+                </a>
+              </h2>
+
+              <p class="notes__description">{note.data.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .notes {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .notes__hero {
+    max-width: 42rem;
+    padding-block: var(--space-2xl);
+  }
+
+  .notes__list {
+    display: grid;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .notes__article {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-left: 0.25rem solid var(--color-mustard);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    transition:
+      border-color 160ms ease,
+      transform 160ms ease;
+
+    &:hover,
+    &:focus-within {
+      border-left-color: var(--color-accent-strong);
+      transform: translateY(-0.125rem);
+    }
+  }
+
+  .notes__title {
+    margin: 0;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    line-height: 1.4;
+  }
+
+  .notes__title a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-accent-strong);
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.16em;
+  }
+
+  .notes__description {
+    margin: var(--space-sm) 0 0;
+    color: var(--color-text-muted);
+  }
+</style>
