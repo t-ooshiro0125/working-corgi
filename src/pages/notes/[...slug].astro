@@ -1,0 +1,227 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+import { noteCategoryOgps } from "../../config/noteCategoryOgps";
+import NoteMeta from "../../components/NoteMeta.astro";
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  note: CollectionEntry<"notes">;
+}
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => !data.draft);
+
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props as Props;
+const { Content } = await render(note);
+
+const categoryOgp = noteCategoryOgps[note.data.category];
+const ogImage = note.data.ogImage ?? categoryOgp?.image;
+const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
+---
+
+<Layout
+  title={`${note.data.title} | Working Corgi`}
+  description={note.data.description}
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
+>
+  <article class="note">
+    <a class="note__back-link" href={`${import.meta.env.BASE_URL}notes/`}>
+      ← Notes 一覧へ戻る
+    </a>
+
+    <header class="note__header">
+      <NoteMeta
+        category={note.data.category}
+        pubDate={note.data.pubDate}
+        updatedDate={note.data.updatedDate}
+        showDateLabel
+        showUpdatedDate
+      />
+      <h1 class="note__title">{note.data.title}</h1>
+      <p class="note__description">{note.data.description}</p>
+    </header>
+
+    <div class="note__content">
+      <Content />
+    </div>
+
+    <footer class="note__footer">
+      <a class="note__back-link" href={`${import.meta.env.BASE_URL}notes/`}>
+        ← Notes 一覧へ戻る
+      </a>
+    </footer>
+  </article>
+</Layout>
+
+<style lang="scss">
+  .note {
+    max-width: 50rem;
+    margin-inline: auto;
+  }
+
+  .note__back-link {
+    display: inline-flex;
+    margin-bottom: var(--space-lg);
+    color: var(--color-link);
+    font-size: 0.875rem;
+    text-underline-offset: 0.18em;
+  }
+
+  .note__header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .note__title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+  }
+
+  .note__description {
+    margin: var(--space-md) 0 0;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+  }
+
+  .note__content {
+    padding: var(--space-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    line-height: 1.9;
+  }
+
+  .note__content > :global(:first-child) {
+    margin-top: var(--space-xs);
+  }
+
+  .note__content > :global(:last-child) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .note__content :global(h2) {
+    margin-top: var(--space-2xl);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 1.5rem;
+  }
+
+  .note__content :global(h3) {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .note__content :global(.heading-anchor) {
+    margin-left: var(--space-xs);
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .note__content :global(h2:hover .heading-anchor),
+  .note__content :global(h3:hover .heading-anchor),
+  .note__content :global(.heading-anchor:focus-visible) {
+    opacity: 1;
+  }
+
+  .note__content :global(p),
+  .note__content :global(ul) {
+    margin-block: var(--space-md);
+  }
+
+  .note__content :global(ul) {
+    padding-left: 1.5em;
+  }
+
+  .note__content :global(li::marker) {
+    color: var(--color-accent-strong);
+  }
+
+  .note__content :global(a) {
+    color: var(--color-link);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.13em;
+  }
+
+  .note__content :global(blockquote) {
+    margin: var(--space-xl) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 0.25rem solid var(--color-accent-strong);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--color-text);
+    background: var(--color-accent-soft);
+  }
+
+  .note__content :global(blockquote p) {
+    margin-block: 0;
+  }
+
+  .note__content :global(table) {
+    width: 100%;
+    margin-block: var(--space-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    border-spacing: 0;
+    border-collapse: separate;
+    overflow: hidden;
+    font-size: 0.9375rem;
+  }
+
+  .note__content :global(th),
+  .note__content :global(td) {
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .note__content :global(th) {
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-accent-soft);
+  }
+
+  .note__content :global(td) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .note__content :global(strong) {
+    color: var(--color-accent-strong);
+  }
+
+  .note__content :global(code) {
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-accent-strong);
+    background: var(--color-accent-soft);
+    font-size: 0.875em;
+  }
+
+  .note__footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 30rem) {
+    .note__content {
+      padding: var(--space-lg);
+    }
+  }
+</style>

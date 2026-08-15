@@ -1,3 +1,11 @@
+.page__eyebrow {
+  margin: 0 0 var(--space-xs);
+  color: var(--color-accent-strong);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
 .page__title {
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   letter-spacing: -0.04em;

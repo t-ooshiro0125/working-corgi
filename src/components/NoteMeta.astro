@@ -1,0 +1,65 @@
+---
+import { noteCategories, type NoteCategory } from "../config/noteCategories";
+
+interface Props {
+  category: NoteCategory;
+  pubDate: Date;
+  updatedDate?: Date;
+  showDateLabel?: boolean;
+  showUpdatedDate?: boolean;
+}
+
+const {
+  category,
+  pubDate,
+  updatedDate,
+  showDateLabel = false,
+  showUpdatedDate = false,
+} = Astro.props as Props;
+
+const dateFormatter = new Intl.DateTimeFormat("ja-JP", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<p class="note-meta">
+  <span class="note-meta__category">{noteCategories[category].label}</span>
+
+  <time datetime={pubDate.toISOString()}>
+    {showDateLabel ? "公開: " : ""}{dateFormatter.format(pubDate)}
+  </time>
+
+  {
+    showUpdatedDate && updatedDate && (
+      <>
+        <span aria-hidden="true">・</span>
+        <time datetime={updatedDate.toISOString()}>
+          更新: {dateFormatter.format(updatedDate)}
+        </time>
+      </>
+    )
+  }
+</p>
+
+<style lang="scss">
+  .note-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .note-meta__category {
+    padding: var(--space-2xs) var(--space-xs);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    background: var(--color-accent-soft);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+</style>
