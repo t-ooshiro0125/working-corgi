@@ -10,6 +10,7 @@ const {
   title = "Working Corgi",
   description = "ACorgi0125 の個人サイトです。",
 } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 
@@ -48,6 +49,23 @@ const navigation = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="Working Corgi" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image" content="https://workingcorgi.com/og-image.png" />
+    <meta
+      property="og:image:alt"
+      content="Working Corgi のロゴと、キャップをかぶったコーギーのイラスト"
+    />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
     <div class="site">
