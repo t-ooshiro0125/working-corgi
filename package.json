@@ -1,5 +1,5 @@
 {
-  "name": "working-corgi",
+  "name": "workingcorgi",
   "private": true,
   "type": "module",
   "version": "0.0.1",
@@ -12,8 +12,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",
-    "format": "prettier --write .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace .github",
-    "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json working-corgi.code-workspace .github"
+    "format": "prettier --write .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json workingcorgi.code-workspace .github",
+    "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json workingcorgi.code-workspace .github"
   },
   "dependencies": {
     "astro": "^7.2.0"

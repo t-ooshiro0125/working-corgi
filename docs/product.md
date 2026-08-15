@@ -44,6 +44,22 @@
 - SNS: https://x.com/working_corgi
 - その他: （掲載しない）
 
+## 制作物
+
+### Working Corgi
+
+- 状況: 公開中
+- 概要: 自己紹介、制作物、技術記事を公開する個人サイト
+- サイト: https://workingcorgi.com
+- GitHub: https://github.com/t-ooshiro0125/workingcorgi
+
+### Companion App
+
+- 状況: 開発中
+- 概要: キャラクターと会話する個人開発アプリ
+- 公開リンク: なし
+- 補足: リポジトリ、技術詳細、画面などは公開しない
+
 ## コンテンツの方針
 
 - 技術記事は、あとから Markdown と Astro Content Collections で管理できる構成にする。
@@ -63,4 +79,3 @@
 - RSS フィード
 - サイト内検索
 - 多言語対応
-- 独自ドメイン

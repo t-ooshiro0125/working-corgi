@@ -8,7 +8,7 @@ import Layout from "../layouts/Layout.astro";
   <div class="home">
     <section class="home__hero">
       <div class="home__hero-copy">
-        <h1 class="home__title">ACorgi0125</h1>
+        <h1 class="home__title page__title">ACorgi0125</h1>
         <p class="home__tagline">
           Webエンジニアとして働きながら、個人開発をしています。
         </p>
@@ -30,6 +30,14 @@ import Layout from "../layouts/Layout.astro";
       </p>
       <a class="home__more-link" href={`${import.meta.env.BASE_URL}about/`}>
         About を見る
+      </a>
+    </section>
+
+    <section class="home__section">
+      <h2 class="home__heading">制作物</h2>
+      <p>個人で制作・運用しているものを紹介しています。</p>
+      <a class="home__more-link" href={`${import.meta.env.BASE_URL}works/`}>
+        Works を見る
       </a>
     </section>
 
@@ -128,13 +136,6 @@ import Layout from "../layouts/Layout.astro";
       border-radius: 0 0 var(--radius-sm) var(--radius-sm);
       content: "";
     }
-  }
-
-  .home__title {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    white-space: nowrap;
   }
 
   .home__tagline {
