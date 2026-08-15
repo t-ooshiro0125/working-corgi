@@ -86,6 +86,23 @@ git push
 - 公開前に本番ビルドを確認し、リンク、画像、サイトのベースパスが GitHub Pages 上でも正しいことを確認する。
 - 公開後は、GitHub Pages の公開 URL でサイトと静的アセットが表示されることを確認する。
 
+### SEO・サイトマップ
+
+#### ビルド時
+
+- `npm run build` を実行する。
+- 次のファイルが生成されることを確認する。
+  - `dist/sitemap-index.xml`
+  - `dist/sitemap-0.xml`
+- サイトマップには、検索結果に表示するページだけが含まれることを確認する。
+
+#### 公開後
+
+- 次の URL にアクセスできることを確認する。
+  - `https://workingcorgi.com/sitemap-index.xml`
+  - `https://workingcorgi.com/robots.txt`
+- `robots.txt` にサイトマップの公開 URL が記載されていることを確認する。
+
 ### トラブルシューティング
 
 - `actions/configure-pages` が Pages サイトを取得できず失敗した場合は、この公開元設定を確認してから、失敗した workflow を再実行するか次回の `main` push を待つ。

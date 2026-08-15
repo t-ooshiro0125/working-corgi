@@ -16,6 +16,7 @@
     "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js package.json .prettierrc.json workingcorgi.code-workspace .github"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.2.0"
   },
   "devDependencies": {
