@@ -14,7 +14,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "openai.chatgpt@26.707.91948",
+        "openai.chatgpt",
         "astro-build.astro-vscode",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
