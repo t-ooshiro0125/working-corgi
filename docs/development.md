@@ -30,6 +30,19 @@
   git diff --cached
   ```
 
+### Stylelint
+
+- `npm run lint` には、ESLint と Stylelint のチェックを含める。
+- スタイルだけを確認・自動修正する場合は、次を使う。
+
+  ```sh
+  npm run lint:styles
+  npm run lint:styles:fix
+  ```
+
+- VS Code では Stylelint 拡張により、SCSS と Astro 内の SCSS を診断する。
+- 保存時の自動修正を有効にしているため、プロパティ順の修正は通常手動で行わない。
+
 ## ブランチと Pull Request
 
 - `main` への直接 push はしない。Issue に対応する変更はブランチで行い、Pull Request を通して `main` へマージする。

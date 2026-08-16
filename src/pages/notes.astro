@@ -61,17 +61,17 @@ const publishedNotes = (
   .notes__list {
     display: grid;
     gap: var(--space-md);
-    margin: 0;
     padding: 0;
+    margin: 0;
     list-style: none;
   }
 
   .notes__article {
     padding: var(--space-lg);
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-left: 0.25rem solid var(--color-mustard);
     border-radius: var(--radius-md);
-    background: var(--color-surface);
     box-shadow: var(--shadow-soft);
     transition:
       border-color 160ms ease,
@@ -92,8 +92,8 @@ const publishedNotes = (
 
   .notes__title a {
     color: var(--color-text);
-    text-decoration-color: var(--color-accent-strong);
     text-decoration-thickness: 0.1em;
+    text-decoration-color: var(--color-accent-strong);
     text-underline-offset: 0.16em;
   }
 
