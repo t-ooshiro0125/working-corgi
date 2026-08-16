@@ -70,14 +70,14 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
   .note__back-link {
     display: inline-flex;
     margin-bottom: var(--space-lg);
-    color: var(--color-link);
     font-size: 0.875rem;
+    color: var(--color-link);
     text-underline-offset: 0.18em;
   }
 
   .note__header {
-    margin-bottom: var(--space-xl);
     padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -96,10 +96,10 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
 
   .note__content {
     padding: var(--space-xl);
+    line-height: 1.9;
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    background: var(--color-surface);
-    line-height: 1.9;
   }
 
   .note__content > :global(:first-child) {
@@ -111,10 +111,10 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
   }
 
   .note__content :global(h2) {
-    margin-top: var(--space-2xl);
     padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--color-border);
+    margin-top: var(--space-2xl);
     font-size: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .note__content :global(h3) {
@@ -126,8 +126,8 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
 
   .note__content :global(.heading-anchor) {
     margin-left: var(--space-xs);
-    color: var(--color-text-muted);
     font-size: 0.8em;
+    color: var(--color-text-muted);
     text-decoration: none;
     opacity: 0;
     transition: opacity 0.15s ease;
@@ -160,12 +160,12 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
   }
 
   .note__content :global(blockquote) {
-    margin: var(--space-xl) 0;
     padding: var(--space-md) var(--space-lg);
-    border-left: 0.25rem solid var(--color-accent-strong);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: var(--space-xl) 0;
     color: var(--color-text);
     background: var(--color-accent-soft);
+    border-left: 0.25rem solid var(--color-accent-strong);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
   .note__content :global(blockquote p) {
@@ -175,19 +175,19 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
   .note__content :global(table) {
     width: 100%;
     margin-block: var(--space-xl);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    border-spacing: 0;
-    border-collapse: separate;
     overflow: hidden;
     font-size: 0.9375rem;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
   }
 
   .note__content :global(th),
   .note__content :global(td) {
     padding: var(--space-sm) var(--space-md);
-    text-align: left;
     vertical-align: top;
+    text-align: left;
   }
 
   .note__content :global(th) {
@@ -206,20 +206,20 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
 
   .note__content :global(code) {
     padding: 0.1em 0.35em;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    font-size: 0.875em;
     color: var(--color-accent-strong);
     background: var(--color-accent-soft);
-    font-size: 0.875em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
   }
 
   .note__footer {
-    margin-top: var(--space-2xl);
     padding-top: var(--space-lg);
+    margin-top: var(--space-2xl);
     border-top: 1px solid var(--color-border);
   }
 
-  @media (max-width: 30rem) {
+  @media (width <= 30rem) {
     .note__content {
       padding: var(--space-lg);
     }

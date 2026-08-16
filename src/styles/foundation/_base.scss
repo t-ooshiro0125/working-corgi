@@ -1,16 +1,16 @@
 html {
-  background: var(--color-background);
-  color: var(--color-text);
   font-family: var(--font-sans);
   font-synthesis: none;
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 body {
   min-width: 20rem;
-  background: var(--color-background);
-  color: var(--color-text);
   font-size: 1rem;
   line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-background);
 }
 
 h1,
@@ -25,10 +25,10 @@ h1,
 h2,
 h3,
 h4 {
-  color: var(--color-text);
   font-weight: 700;
-  letter-spacing: -0.03em;
   line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
 }
 
 p {
@@ -50,6 +50,6 @@ button:focus-visible {
 }
 
 ::selection {
-  background: var(--color-accent-soft);
   color: var(--color-text);
+  background: var(--color-accent-soft);
 }

@@ -78,30 +78,30 @@ import Layout from "../layouts/Layout.astro";
   .about__hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.65fr);
-    align-items: start;
     gap: var(--space-xl);
+    align-items: start;
     padding-block: var(--space-2xl);
   }
 
-  @media (max-width: 40rem) {
+  @media (width <= 40rem) {
     .about__hero {
       grid-template-columns: 1fr;
     }
   }
 
   .about__avatar {
-    width: 100%;
-    height: auto;
-    max-width: 22rem;
     justify-self: end;
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
   }
 
-  @media (max-width: 40rem) {
+  @media (width <= 40rem) {
     .about__avatar {
-      max-width: 20rem;
       justify-self: center;
+      max-width: 20rem;
     }
   }
 
@@ -128,7 +128,7 @@ import Layout from "../layouts/Layout.astro";
 
   .about__skill-name {
     margin-bottom: var(--space-xs);
-    color: var(--color-accent-strong);
     font-weight: 700;
+    color: var(--color-accent-strong);
   }
 </style>
