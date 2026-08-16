@@ -7,7 +7,11 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 // https://astro.build/config
 export default defineConfig({
   site: "https://workingcorgi.com",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => new URL(page).pathname !== "/404",
+    }),
+  ],
   markdown: {
     processor: unified({
       rehypePlugins: [
