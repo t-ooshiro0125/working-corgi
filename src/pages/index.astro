@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { profiles } from "../config/site";
 ---
 
 <Layout
@@ -60,7 +61,7 @@ import Layout from "../layouts/Layout.astro";
         <li>
           <a
             class="home__link button"
-            href="https://github.com/t-ooshiro0125"
+            href={profiles.github.url}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -70,7 +71,7 @@ import Layout from "../layouts/Layout.astro";
         <li>
           <a
             class="home__link button"
-            href="https://x.com/working_corgi"
+            href={profiles.x.url}
             target="_blank"
             rel="noopener noreferrer"
           >

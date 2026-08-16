@@ -1,0 +1,125 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ExternalLinkIcon from "../components/ExternalLinkIcon.astro";
+import { profiles } from "../config/site";
+
+const contactMethods = [
+  {
+    service: "X",
+    description: `${profiles.x.handle} へ DM する`,
+    href: profiles.x.url,
+    ariaLabel: "X のプロフィールを新しいタブで開く（外部サイト）",
+  },
+  {
+    service: "GitHub",
+    description: `${profiles.github.handle} のプロフィールを見る`,
+    href: profiles.github.url,
+    ariaLabel: "GitHub プロフィールを新しいタブで開く（外部サイト）",
+  },
+];
+---
+
+<Layout
+  title="Contact | Working Corgi"
+  description="ACorgi0125 への連絡方法を案内します。"
+>
+  <div class="contact">
+    <section class="contact__hero">
+      <p class="page__eyebrow">GET IN TOUCH</p>
+      <h1 class="page__title">Contact</h1>
+      <p class="page__lead">
+        ご連絡は、X の DM または GitHub プロフィールからお願いします。
+      </p>
+    </section>
+
+    <section class="contact__methods" aria-labelledby="contact-methods-title">
+      <h2 id="contact-methods-title" class="contact__heading">連絡先</h2>
+
+      <ul class="contact__list" role="list">
+        {
+          contactMethods.map(({ service, description, href, ariaLabel }) => (
+            <li>
+              <a
+                class="contact__link"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={ariaLabel}
+              >
+                <span class="contact__service">{service}</span>
+                <span class="contact__description">{description}</span>
+                <span class="contact__external" aria-hidden="true">
+                  <ExternalLinkIcon />
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .contact {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .contact__hero {
+    max-width: 42rem;
+    padding-block: var(--space-2xl);
+  }
+
+  .contact__heading {
+    margin-bottom: var(--space-md);
+    font-size: 1.25rem;
+  }
+
+  .contact__list {
+    display: grid;
+    gap: var(--space-sm);
+    padding: 0;
+  }
+
+  .contact__link {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-2xs);
+    align-items: center;
+    padding: var(--space-lg);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 0.25rem solid var(--color-sage);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    transition:
+      background-color 0.2s,
+      transform 0.2s;
+
+    &:hover {
+      background: var(--color-accent-soft);
+      transform: translateY(-0.125rem);
+    }
+  }
+
+  .contact__service {
+    font-weight: 700;
+  }
+
+  .contact__description {
+    grid-column: 1;
+    color: var(--color-text-muted);
+  }
+
+  .contact__external {
+    display: block;
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-accent-strong);
+  }
+</style>
