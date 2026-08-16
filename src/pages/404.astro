@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="ページが見つかりません | Working Corgi"
+  description="お探しのページは見つかりませんでした。"
+  noindex
+>
+  <section class="not-found">
+    <div class="not-found__copy">
+      <p class="page__eyebrow">404 ERROR</p>
+      <h1 class="page__title">ページが見つかりません</h1>
+      <p class="not-found__lead page__lead">
+        URLが間違っているか、ページが移動または削除された可能性があります。
+      </p>
+    </div>
+
+    <div class="not-found__illustration">
+      <img
+        class="not-found__image"
+        src={`${import.meta.env.BASE_URL}corgi-404.webp`}
+        alt="ノートパソコンの前で、なくなったページを探すコーギーのイラスト"
+        width="1536"
+        height="1024"
+      />
+    </div>
+
+    <a
+      class="button button--primary button--large"
+      href={import.meta.env.BASE_URL}
+    >
+      Home へ戻る
+    </a>
+  </section>
+</Layout>
+
+<style lang="scss">
+  .not-found {
+    display: grid;
+    gap: var(--space-md);
+    justify-items: center;
+    min-height: 24rem;
+    padding-block: var(--space-lg);
+    text-align: center;
+  }
+
+  .not-found__copy {
+    display: grid;
+    gap: var(--space-sm);
+    justify-items: center;
+  }
+
+  .not-found .page__title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+  }
+
+  .not-found__lead {
+    max-width: 32rem;
+  }
+
+  .not-found__illustration {
+    position: relative;
+    width: min(100%, 30rem);
+  }
+
+  .not-found__illustration::after {
+    position: absolute;
+    bottom: 24%;
+    left: 32%;
+    z-index: 0;
+    width: 52%;
+    height: 25%;
+    content: "";
+    background: var(--color-border);
+    border-radius: 50%;
+    filter: blur(0.1rem);
+  }
+
+  .not-found__image {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (width <= 40rem) {
+    .not-found {
+      min-height: auto;
+    }
+  }
+</style>
