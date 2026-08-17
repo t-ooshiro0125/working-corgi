@@ -8,13 +8,11 @@ const contactMethods = [
     service: "X",
     description: `${profiles.x.handle} へ DM する`,
     href: profiles.x.url,
-    ariaLabel: "X のプロフィールを新しいタブで開く（外部サイト）",
   },
   {
     service: "GitHub",
     description: `${profiles.github.handle} のプロフィールを見る`,
     href: profiles.github.url,
-    ariaLabel: "GitHub プロフィールを新しいタブで開く（外部サイト）",
   },
 ];
 ---
@@ -37,17 +35,17 @@ const contactMethods = [
 
       <ul class="contact__list" role="list">
         {
-          contactMethods.map(({ service, description, href, ariaLabel }) => (
+          contactMethods.map(({ service, description, href }) => (
             <li>
               <a
                 class="contact__link"
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={ariaLabel}
               >
                 <span class="contact__service">{service}</span>
                 <span class="contact__description">{description}</span>
+                <span class="contact__new-tab">新しいタブで開く</span>
                 <span class="contact__external" aria-hidden="true">
                   <ExternalLinkIcon />
                 </span>
@@ -112,6 +110,18 @@ const contactMethods = [
   .contact__description {
     grid-column: 1;
     color: var(--color-text-muted);
+  }
+
+  .contact__new-tab {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
   }
 
   .contact__external {
