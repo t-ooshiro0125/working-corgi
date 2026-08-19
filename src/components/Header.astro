@@ -78,12 +78,20 @@ const navigation = navigationItems.map((item) => {
 
   const initializeHeaderNavigation = () => {
     const header = document.querySelector<HTMLElement>(".site-header");
+
+    if (!header) {
+      return;
+    }
+
+    const brandLink = header.querySelector<HTMLAnchorElement>(
+      ".site-header__brand",
+    );
     const menuButton = document.querySelector<HTMLButtonElement>(
       ".site-header__menu-button",
     );
     const navigation = document.querySelector<HTMLElement>("#site-navigation");
 
-    if (!header || !menuButton || !navigation) {
+    if (!brandLink || !menuButton || !navigation) {
       return;
     }
 
@@ -117,6 +125,9 @@ const navigation = navigationItems.map((item) => {
 
     // デスクトップではナビゲーションを常に操作可能な状態に戻す。
     const setDesktopNavigationState = () => {
+      if (document.activeElement === menuButton) {
+        brandLink.focus();
+      }
       navigation.classList.remove("site-header__nav--open");
       menuButton.classList.remove("site-header__menu-button--open");
       navigation.inert = false;
