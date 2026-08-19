@@ -138,10 +138,14 @@ const navigation = navigationItems.map((item) => {
     });
 
     header.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && mobileMediaQuery.matches) {
-        setMobileNavigationState(false);
-        menuButton.focus();
+      const isOpen = navigation.classList.contains("site-header__nav--open");
+
+      if (event.key !== "Escape" || !mobileMediaQuery.matches || !isOpen) {
+        return;
       }
+
+      setMobileNavigationState(false);
+      menuButton.focus();
     });
 
     mobileMediaQuery.addEventListener("change", syncNavigationWithViewport);
