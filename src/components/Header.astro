@@ -77,12 +77,13 @@ const navigation = navigationItems.map((item) => {
   };
 
   const initializeHeaderNavigation = () => {
+    const header = document.querySelector<HTMLElement>(".site-header");
     const menuButton = document.querySelector<HTMLButtonElement>(
       ".site-header__menu-button",
     );
     const navigation = document.querySelector<HTMLElement>("#site-navigation");
 
-    if (!menuButton || !navigation) {
+    if (!header || !menuButton || !navigation) {
       return;
     }
 
@@ -136,7 +137,7 @@ const navigation = navigationItems.map((item) => {
       setMobileNavigationState(!isOpen);
     });
 
-    navigation.addEventListener("keydown", (event) => {
+    header.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && mobileMediaQuery.matches) {
         setMobileNavigationState(false);
         menuButton.focus();
