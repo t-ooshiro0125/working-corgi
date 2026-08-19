@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 import "../styles/index.scss";
 
 interface Props {
@@ -11,14 +12,6 @@ interface Props {
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const navigationItems = [
-  { label: "Home", href: baseUrl },
-  { label: "About", href: `${baseUrl}about/` },
-  { label: "Works", href: `${baseUrl}works/` },
-  { label: "Notes", href: `${baseUrl}notes/` },
-  { label: "Contact", href: `${baseUrl}contact/` },
-];
-
 const {
   title = "Working Corgi",
   description = "ACorgi0125 の個人サイトです。",
@@ -26,22 +19,8 @@ const {
   ogImageAlt = "Working Corgi のロゴと、キャップをかぶったコーギーのイラスト",
   noindex = false,
 } = Astro.props as Props;
-
-const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
-
-const navigation = navigationItems.map((item) => {
-  const path =
-    new URL(item.href, Astro.url).pathname.replace(/\/+$/, "") || "/";
-
-  return {
-    ...item,
-    isCurrent:
-      currentPath === path ||
-      (path !== "/" && currentPath.startsWith(`${path}/`)),
-  };
-});
 ---
 
 <!doctype html>
@@ -49,6 +28,10 @@ const navigation = navigationItems.map((item) => {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -89,37 +72,7 @@ const navigation = navigationItems.map((item) => {
         alt=""
       />
 
-      <header class="site-header">
-        <div class="site-header__inner">
-          <a
-            class="site-header__brand"
-            href={baseUrl}
-            aria-label="Working Corgi"
-          >
-            <img
-              class="site-header__logo"
-              src={`${baseUrl}corgi-favicon-black.webp`}
-              alt=""
-              width="512"
-              height="512"
-            />
-            <span class="site-header__name">Working Corgi</span>
-          </a>
-          <nav class="site-header__nav" aria-label="メインナビゲーション">
-            {
-              navigation.map(({ label, href, isCurrent }) => (
-                <a
-                  class="site-header__link"
-                  href={href}
-                  aria-current={isCurrent ? "page" : undefined}
-                >
-                  {label}
-                </a>
-              ))
-            }
-          </nav>
-        </div>
-      </header>
+      <Header baseUrl={baseUrl} />
 
       <main class="site-main">
         <slot />
@@ -153,70 +106,6 @@ const navigation = navigationItems.map((item) => {
       opacity: 0.06;
     }
 
-    .site-header {
-      position: relative;
-      z-index: 1;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .site-header__inner {
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: var(--content-width);
-      padding: var(--space-lg)
-        clamp(var(--space-md), 3vw, var(--content-padding));
-      margin-inline: auto;
-    }
-
-    .site-header__brand {
-      display: inline-flex;
-      gap: var(--space-xs);
-      align-items: center;
-      color: var(--color-text);
-    }
-
-    .site-header__logo {
-      width: 1.75rem;
-      height: 1.75rem;
-    }
-
-    .site-header__name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    .site-header__nav {
-      display: flex;
-      gap: clamp(var(--space-2xs), 1.5vw, var(--space-sm));
-    }
-
-    .site-header__link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.25rem;
-      padding-inline: clamp(var(--space-2xs), 1.5vw, var(--space-sm));
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--color-text-muted);
-      border-radius: var(--radius-sm);
-
-      &:hover {
-        color: var(--color-text);
-        background: var(--color-accent-soft);
-      }
-    }
-
-    .site-header__link[aria-current="page"] {
-      color: var(--color-text);
-      background: var(--color-accent-soft);
-    }
-
     .site-main {
       position: relative;
       z-index: 1;
@@ -242,31 +131,6 @@ const navigation = navigationItems.map((item) => {
     .site-footer__copyright {
       font-size: 0.875rem;
       color: var(--color-text-muted);
-    }
-
-    @media (width <= 40rem) {
-      .site-header__inner {
-        flex-wrap: wrap;
-        row-gap: var(--space-sm);
-      }
-
-      .site-header__nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-      }
-    }
-
-    @media (width <= 24rem) {
-      .site-header__nav {
-        flex-wrap: nowrap;
-        gap: var(--space-2xs);
-      }
-
-      .site-header__link {
-        padding-inline: var(--space-2xs);
-        font-size: 0.75rem;
-      }
     }
   </style>
 </html>
