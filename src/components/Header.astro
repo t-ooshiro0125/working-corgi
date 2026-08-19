@@ -106,6 +106,15 @@ const navigation = navigationItems.map((item) => {
       setMenuButtonAccessibility(isOpen);
     };
 
+    // 閉じる前に、ナビゲーション内のフォーカスをメニューボタンへ退避する。
+    const closeMobileNavigation = () => {
+      if (navigation.contains(document.activeElement)) {
+        menuButton.focus();
+      }
+
+      setMobileNavigationState(false);
+    };
+
     // デスクトップではナビゲーションを常に操作可能な状態に戻す。
     const setDesktopNavigationState = () => {
       navigation.classList.remove("site-header__nav--open");
@@ -118,7 +127,7 @@ const navigation = navigationItems.map((item) => {
     // 表示幅に応じてナビゲーションの状態を同期する。
     const syncNavigationWithViewport = () => {
       if (mobileMediaQuery.matches) {
-        setMobileNavigationState(false);
+        closeMobileNavigation();
       } else {
         setDesktopNavigationState();
       }
@@ -134,7 +143,11 @@ const navigation = navigationItems.map((item) => {
 
       const isOpen = navigation.classList.contains("site-header__nav--open");
 
-      setMobileNavigationState(!isOpen);
+      if (isOpen) {
+        closeMobileNavigation();
+      } else {
+        setMobileNavigationState(true);
+      }
     });
 
     header.addEventListener("keydown", (event) => {
@@ -144,8 +157,7 @@ const navigation = navigationItems.map((item) => {
         return;
       }
 
-      setMobileNavigationState(false);
-      menuButton.focus();
+      closeMobileNavigation();
     });
 
     mobileMediaQuery.addEventListener("change", syncNavigationWithViewport);
