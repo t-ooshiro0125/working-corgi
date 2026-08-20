@@ -1,28 +1,23 @@
 ---
+import { navigationItems } from "../config/site";
+
 interface Props {
   baseUrl: string;
 }
 
 const { baseUrl } = Astro.props as Props;
 
-const navigationItems = [
-  { label: "Home", href: baseUrl },
-  { label: "About", href: `${baseUrl}about/` },
-  { label: "Works", href: `${baseUrl}works/` },
-  { label: "Notes", href: `${baseUrl}notes/` },
-  { label: "Contact", href: `${baseUrl}contact/` },
-];
-
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const navigation = navigationItems.map((item) => {
-  const path =
-    new URL(item.href, Astro.url).pathname.replace(/\/+$/, "") || "/";
+const navigation = navigationItems.map(({ label, path }) => {
+  const href = `${baseUrl}${path}`;
+  const pathname = new URL(href, Astro.url).pathname.replace(/\/+$/, "") || "/";
 
   return {
-    ...item,
+    label,
+    href,
     isCurrent:
-      currentPath === path ||
-      (path !== "/" && currentPath.startsWith(`${path}/`)),
+      currentPath === pathname ||
+      (pathname !== "/" && currentPath.startsWith(`${pathname}/`)),
   };
 });
 ---

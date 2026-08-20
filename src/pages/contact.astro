@@ -5,12 +5,12 @@ import { profiles } from "../config/site";
 
 const contactMethods = [
   {
-    service: "X",
+    service: profiles.x.label,
     description: `${profiles.x.handle} へ DM する`,
     href: profiles.x.url,
   },
   {
-    service: "GitHub",
+    service: profiles.github.label,
     description: `${profiles.github.handle} のプロフィールを見る`,
     href: profiles.github.url,
   },
@@ -45,7 +45,7 @@ const contactMethods = [
               >
                 <span class="contact__service">{service}</span>
                 <span class="contact__description">{description}</span>
-                <span class="contact__new-tab">新しいタブで開く</span>
+                <span class="visually-hidden">新しいタブで開く</span>
                 <span class="contact__external" aria-hidden="true">
                   <ExternalLinkIcon />
                 </span>
@@ -110,18 +110,6 @@ const contactMethods = [
   .contact__description {
     grid-column: 1;
     color: var(--color-text-muted);
-  }
-
-  .contact__new-tab {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    white-space: nowrap;
-    border: 0;
-    clip-path: inset(50%);
   }
 
   .contact__external {
