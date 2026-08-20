@@ -17,3 +17,11 @@
   font-size: clamp(1rem, 2vw, 1.125rem);
   color: var(--color-text-muted);
 }
+
+.page__hero {
+  padding-block: var(--space-2xl);
+}
+
+.page__hero--narrow {
+  max-width: 42rem;
+}

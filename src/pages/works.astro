@@ -8,7 +8,7 @@ import { site } from "../config/site";
   description="ACorgi0125 が制作している個人開発アプリと個人サイトを紹介します。"
 >
   <div class="works">
-    <section class="works__hero">
+    <section class="page__hero page__hero--narrow">
       <p class="page__eyebrow">MY WORKS</p>
       <h1 class="works__title page__title">Works</h1>
       <p class="works__lead page__lead">
@@ -89,11 +89,6 @@ import { site } from "../config/site";
   .works {
     display: grid;
     gap: var(--space-2xl);
-  }
-
-  .works__hero {
-    max-width: 42rem;
-    padding-block: var(--space-2xl);
   }
 
   .works__heading {

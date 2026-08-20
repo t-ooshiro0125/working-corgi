@@ -1,5 +1,5 @@
 ---
-import { navigationItems, site } from "../config/site";
+import { headerNavigationItems, site } from "../config/site";
 
 interface Props {
   baseUrl: string;
@@ -8,7 +8,7 @@ interface Props {
 const { baseUrl } = Astro.props as Props;
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const navigation = navigationItems.map(({ label, path }) => {
+const navigation = headerNavigationItems.map(({ label, path }) => {
   const href = `${baseUrl}${path}`;
   const pathname = new URL(href, Astro.url).pathname.replace(/\/+$/, "") || "/";
 
