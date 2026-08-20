@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { site } from "../config/site";
 ---
 
 <Layout
-  title="About | Working Corgi"
+  title={`About | ${site.name}`}
   description="ACorgi0125 の経歴、得意分野、現在取り組んでいることを紹介します。"
 >
   <div class="about">

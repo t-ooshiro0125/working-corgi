@@ -1,3 +1,14 @@
+const siteName = "Working Corgi";
+
+export const site = {
+  name: siteName,
+  defaultDescription: "ACorgi0125 の個人サイトです。",
+  defaultOgp: {
+    image: "/og-image.png",
+    imageAlt: `${siteName} のロゴと、キャップをかぶったコーギーのイラスト`,
+  },
+} as const;
+
 export const profiles = {
   github: {
     label: "GitHub",

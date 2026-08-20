@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import { site } from "../config/site";
 import "../styles/index.scss";
 
 interface Props {
@@ -14,10 +15,10 @@ interface Props {
 const baseUrl = import.meta.env.BASE_URL;
 
 const {
-  title = "Working Corgi",
-  description = "ACorgi0125 の個人サイトです。",
-  ogImage = "/og-image.png",
-  ogImageAlt = "Working Corgi のロゴと、キャップをかぶったコーギーのイラスト",
+  title = site.name,
+  description = site.defaultDescription,
+  ogImage = site.defaultOgp.image,
+  ogImageAlt = site.defaultOgp.imageAlt,
   noindex = false,
 } = Astro.props as Props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -54,7 +55,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:locale" content="ja_JP" />
-    <meta property="og:site_name" content="Working Corgi" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

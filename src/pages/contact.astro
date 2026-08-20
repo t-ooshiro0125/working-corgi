@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ExternalLinkIcon from "../components/ExternalLinkIcon.astro";
-import { profiles } from "../config/site";
+import { profiles, site } from "../config/site";
 
 const contactMethods = [
   {
@@ -18,7 +18,7 @@ const contactMethods = [
 ---
 
 <Layout
-  title="Contact | Working Corgi"
+  title={`Contact | ${site.name}`}
   description="ACorgi0125 への連絡方法を案内します。"
 >
   <div class="contact">

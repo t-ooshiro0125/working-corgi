@@ -1,6 +1,6 @@
 ---
 import ExternalLinkIcon from "./ExternalLinkIcon.astro";
-import { navigationItems, profileItems } from "../config/site";
+import { navigationItems, profileItems, site } from "../config/site";
 
 interface Props {
   baseUrl: string;
@@ -12,11 +12,7 @@ const { baseUrl } = Astro.props as Props;
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__brand">
-      <a
-        class="site-footer__brand-link"
-        href={baseUrl}
-        aria-label="Working Corgi"
-      >
+      <a class="site-footer__brand-link" href={baseUrl} aria-label={site.name}>
         <img
           class="site-footer__brand-mark"
           src={`${baseUrl}corgi-mark.webp`}
@@ -24,7 +20,7 @@ const { baseUrl } = Astro.props as Props;
           width="56"
           height="56"
         />
-        <span class="site-footer__brand-name">Working Corgi</span>
+        <span class="site-footer__brand-name">{site.name}</span>
       </a>
       <p class="site-footer__description">
         Web開発を中心に仕事をしながら、<br
@@ -68,7 +64,7 @@ const { baseUrl } = Astro.props as Props;
     </nav>
 
     <p class="site-footer__copyright">
-      © {new Date().getFullYear()} Working Corgi
+      © {new Date().getFullYear()}{" "}{site.name}
     </p>
   </div>
 </footer>

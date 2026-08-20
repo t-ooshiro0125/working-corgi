@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { site } from "../config/site";
 ---
 
 <Layout
-  title="ページが見つかりません | Working Corgi"
+  title={`ページが見つかりません | ${site.name}`}
   description="お探しのページは見つかりませんでした。"
   noindex
 >

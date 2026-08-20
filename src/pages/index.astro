@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { profiles } from "../config/site";
+import { profiles, site } from "../config/site";
 ---
 
 <Layout
-  title="Working Corgi | ACorgi0125 の個人サイト"
+  title={`${site.name} | ACorgi0125 の個人サイト`}
   description="ACorgi0125 の自己紹介と制作物を掲載する個人サイトです。"
 >
   <div class="home">
