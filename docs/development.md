@@ -46,7 +46,6 @@
 ## ブランチと Pull Request
 
 - `main` への直接 push はしない。Issue に対応する変更はブランチで行い、Pull Request を通して `main` へマージする。
-- 新しい作業を始める前に、現在の作業ツリーがクリーンであることを確認する。未コミットの変更がある場合は、対応中の作業としてコミットするか、安全に退避してから切り替える。
 
 ### 命名規則
 
@@ -57,19 +56,21 @@
 
 - `<種類>` には、[コミットメッセージ](conventions.md#コミットメッセージ)で定めた種類を使う。
 
-### 新しい Issue に着手する手順
+### Issue 用ブランチの作成
 
-```sh
-# 現在の変更がないことを確認する
-git status --short
+- 原則: 最新の `main` から、上記の命名規則に沿って Issue 用ブランチを作成する。
+- 前提:
+  - 作業ツリーとインデックスがクリーンである。
+  - ローカルの `main` を fast-forward のみで更新し、`origin/main` と一致している。
+- 停止条件: 前提を満たせない場合はブランチを作成せず、原因を解消してからやり直す。
+- コマンド例:
 
-# main を最新化する
-git switch main
-git pull --ff-only origin main
-
-# Issue 用の作業ブランチを作成する
-git switch -c <種類>/<Issue番号>-<短い説明>
-```
+  ```sh
+  git status --short
+  git switch main
+  git pull --ff-only origin main
+  git switch -c <種類>/<Issue番号>-<短い説明>
+  ```
 
 ### Push と Pull Request
 
