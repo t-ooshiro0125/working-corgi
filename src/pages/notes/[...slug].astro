@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 
 import { noteCategoryOgps } from "../../config/noteCategoryOgps";
+import { site } from "../../config/site";
 import NoteMeta from "../../components/NoteMeta.astro";
 import Layout from "../../layouts/Layout.astro";
 
@@ -27,7 +28,7 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
 ---
 
 <Layout
-  title={`${note.data.title} | Working Corgi`}
+  title={`${note.data.title} | ${site.name}`}
   description={note.data.description}
   ogImage={ogImage}
   ogImageAlt={ogImageAlt}

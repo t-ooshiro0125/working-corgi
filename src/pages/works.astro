@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { site } from "../config/site";
 ---
 
 <Layout
-  title="Works | Working Corgi"
+  title={`Works | ${site.name}`}
   description="ACorgi0125 が制作している個人開発アプリと個人サイトを紹介します。"
 >
   <div class="works">

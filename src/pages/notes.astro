@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 
 import NoteMeta from "../components/NoteMeta.astro";
+import { site } from "../config/site";
 import Layout from "../layouts/Layout.astro";
 
 const publishedNotes = (
@@ -10,7 +11,7 @@ const publishedNotes = (
 ---
 
 <Layout
-  title="Notes | Working Corgi"
+  title={`Notes | ${site.name}`}
   description="ACorgi0125 の技術メモ、雑記、Development Log を掲載しています。"
 >
   <div class="notes">
