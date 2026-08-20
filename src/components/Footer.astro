@@ -1,6 +1,6 @@
 ---
 import ExternalLinkIcon from "./ExternalLinkIcon.astro";
-import { navigationItems, profileItems, site } from "../config/site";
+import { footerNavigationItems, profileItems, site } from "../config/site";
 
 interface Props {
   baseUrl: string;
@@ -33,7 +33,7 @@ const { baseUrl } = Astro.props as Props;
       <p class="site-footer__heading">Site</p>
       <ul class="site-footer__links" role="list">
         {
-          navigationItems.map(({ label, path }) => (
+          footerNavigationItems.map(({ label, path }) => (
             <li>
               <a class="site-footer__link" href={`${baseUrl}${path}`}>
                 {label}

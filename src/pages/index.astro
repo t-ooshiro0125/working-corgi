@@ -1,6 +1,10 @@
 ---
+import ChangelogList from "../components/ChangelogList.astro";
 import Layout from "../layouts/Layout.astro";
 import { profiles, site } from "../config/site";
+import { changelogEntries } from "../data/changelog";
+
+const latestChangelogEntries = changelogEntries.slice(0, 5);
 ---
 
 <Layout
@@ -53,6 +57,27 @@ import { profiles, site } from "../config/site";
     <section class="home__section">
       <h2 class="home__heading">好きなこと</h2>
       <p>トモダチコレクションや、YouTubeの動画を観るのが好きです。</p>
+    </section>
+
+    <section class="home__section" aria-labelledby="home-changelog-title">
+      <div class="home__section-header">
+        <h2
+          id="home-changelog-title"
+          class="home__heading home__heading--inline"
+        >
+          最近の更新
+        </h2>
+        <a
+          class="home__more-link home__more-link--inline"
+          href={`${import.meta.env.BASE_URL}changelog/`}
+          aria-label="Changelog をすべて見る"
+        >
+          すべて見る
+        </a>
+      </div>
+      <div class="home__changelog">
+        <ChangelogList entries={latestChangelogEntries} variant="compact" />
+      </div>
     </section>
 
     <section class="home__section">
@@ -151,6 +176,26 @@ import { profiles, site } from "../config/site";
     margin-bottom: var(--space-sm);
     font-size: 1.25rem;
     letter-spacing: -0.02em;
+  }
+
+  .home__heading--inline {
+    margin-bottom: 0;
+  }
+
+  .home__section-header {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .home__more-link.home__more-link--inline {
+    flex: 0 0 auto;
+    margin-top: 0;
+  }
+
+  .home__changelog {
+    margin-top: var(--space-md);
   }
 
   .home__links {

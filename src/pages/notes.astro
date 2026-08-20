@@ -15,7 +15,7 @@ const publishedNotes = (
   description="ACorgi0125 の技術メモ、雑記、Development Log を掲載しています。"
 >
   <div class="notes">
-    <header class="notes__hero">
+    <header class="page__hero page__hero--narrow">
       <p class="page__eyebrow">MY NOTES</p>
       <h1 class="page__title">Notes</h1>
       <p class="page__lead">
@@ -34,7 +34,10 @@ const publishedNotes = (
               />
 
               <h2 class="notes__title">
-                <a href={`${import.meta.env.BASE_URL}notes/${note.id}/`}>
+                <a
+                  class="notes__link"
+                  href={`${import.meta.env.BASE_URL}notes/${note.id}/`}
+                >
                   {note.data.title}
                 </a>
               </h2>
@@ -52,11 +55,6 @@ const publishedNotes = (
   .notes {
     display: grid;
     gap: var(--space-2xl);
-  }
-
-  .notes__hero {
-    max-width: 42rem;
-    padding-block: var(--space-2xl);
   }
 
   .notes__list {
@@ -91,11 +89,8 @@ const publishedNotes = (
     line-height: 1.4;
   }
 
-  .notes__title a {
+  .notes__link {
     color: var(--color-text);
-    text-decoration-thickness: 0.1em;
-    text-decoration-color: var(--color-accent-strong);
-    text-underline-offset: 0.16em;
   }
 
   .notes__description {

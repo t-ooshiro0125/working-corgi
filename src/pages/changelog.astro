@@ -1,0 +1,33 @@
+---
+import ChangelogList from "../components/ChangelogList.astro";
+import { site } from "../config/site";
+import { changelogEntries } from "../data/changelog";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title={`Changelog | ${site.name}`}
+  description="Working Corgi と公開中の制作物に関する主要な更新を掲載しています。"
+>
+  <div class="changelog">
+    <header class="page__hero page__hero--narrow">
+      <p class="page__eyebrow">WHAT'S NEW</p>
+      <h1 class="page__title">Changelog</h1>
+      <p class="page__lead">
+        サイトと公開中の制作物について、閲覧する方に関係する主要な更新をお知らせします。
+      </p>
+    </header>
+
+    <section aria-labelledby="changelog-list-title">
+      <h2 id="changelog-list-title" class="visually-hidden">更新履歴</h2>
+      <ChangelogList entries={changelogEntries} />
+    </section>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .changelog {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+</style>

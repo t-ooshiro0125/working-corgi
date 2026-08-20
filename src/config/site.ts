@@ -24,10 +24,28 @@ export const profiles = {
 
 export const profileItems = [profiles.github, profiles.x] as const;
 
-export const navigationItems = [
-  { label: "Home", path: "" },
-  { label: "About", path: "about/" },
-  { label: "Works", path: "works/" },
-  { label: "Notes", path: "notes/" },
-  { label: "Contact", path: "contact/" },
+const navigationLinks = {
+  home: { label: "Home", path: "" },
+  about: { label: "About", path: "about/" },
+  works: { label: "Works", path: "works/" },
+  notes: { label: "Notes", path: "notes/" },
+  contact: { label: "Contact", path: "contact/" },
+  changelog: { label: "Changelog", path: "changelog/" },
+} as const;
+
+export const headerNavigationItems = [
+  navigationLinks.home,
+  navigationLinks.about,
+  navigationLinks.works,
+  navigationLinks.notes,
+  navigationLinks.contact,
+] as const;
+
+export const footerNavigationItems = [
+  navigationLinks.home,
+  navigationLinks.about,
+  navigationLinks.works,
+  navigationLinks.notes,
+  navigationLinks.changelog,
+  navigationLinks.contact,
 ] as const;
