@@ -1,4 +1,4 @@
-import type { ChangelogLink } from "../data/changelog";
+import type { ChangelogLink } from "../domain/changelog";
 
 export const formatChangelogDate = (date: string) => date.replaceAll("-", ".");
 

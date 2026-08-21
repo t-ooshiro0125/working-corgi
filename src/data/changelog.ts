@@ -1,116 +1,7 @@
-export type ChangelogLink =
-  | { readonly kind: "internal"; readonly path: string }
-  | { readonly kind: "external"; readonly url: string };
-
-export interface ChangelogEntry {
-  readonly date: string;
-  readonly title: string;
-  readonly description: string;
-  readonly link?: ChangelogLink;
-}
-
-const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-const internalPathValidationBaseUrl = new URL(
-  "https://changelog.invalid/base/",
-);
-
-const hasInvalidOrTraversalSegment = (path: string) => {
-  try {
-    const [pathname] = path.split(/[?#]/, 1);
-    return pathname
-      .split(/[\\/]/)
-      .some((segment) => [".", ".."].includes(decodeURIComponent(segment)));
-  } catch {
-    return true;
-  }
-};
-
-const validateLink = (link: ChangelogLink, title: string) => {
-  if (link.kind === "external") {
-    let url: URL;
-
-    try {
-      url = new URL(link.url);
-    } catch {
-      throw new Error(
-        `Changelog「${title}」の link.url に有効な URL を設定してください: ${link.url}`,
-      );
-    }
-
-    if (
-      link.url !== link.url.trim() ||
-      url.protocol !== "https:" ||
-      !url.hostname
-    ) {
-      throw new Error(
-        `Changelog「${title}」の link.url は有効な https:// URL にしてください: ${link.url}`,
-      );
-    }
-
-    return;
-  }
-
-  let resolvedUrl: URL;
-
-  try {
-    resolvedUrl = new URL(link.path, internalPathValidationBaseUrl);
-  } catch {
-    throw new Error(
-      `Changelog「${title}」の link.path に有効なパスを設定してください: ${link.path}`,
-    );
-  }
-
-  if (
-    !link.path ||
-    link.path !== link.path.trim() ||
-    link.path.startsWith("/") ||
-    hasInvalidOrTraversalSegment(link.path) ||
-    resolvedUrl.origin !== internalPathValidationBaseUrl.origin ||
-    !resolvedUrl.pathname.startsWith(internalPathValidationBaseUrl.pathname)
-  ) {
-    throw new Error(
-      `Changelog「${title}」の link.path は BASE_URL 配下の相対パスで設定してください: ${link.path}`,
-    );
-  }
-};
-
-const validateEntry = ({ date, title, description, link }: ChangelogEntry) => {
-  if (!title.trim()) {
-    throw new Error("Changelog の title は空にできません。");
-  }
-
-  if (!description.trim()) {
-    throw new Error(`Changelog「${title}」の description は空にできません。`);
-  }
-
-  if (!datePattern.test(date)) {
-    throw new Error(
-      `Changelog「${title}」の date は YYYY-MM-DD 形式で設定してください: ${date}`,
-    );
-  }
-
-  const parsedDate = new Date(`${date}T00:00:00Z`);
-
-  if (
-    Number.isNaN(parsedDate.valueOf()) ||
-    parsedDate.toISOString().slice(0, 10) !== date
-  ) {
-    throw new Error(`Changelog「${title}」の date が不正です: ${date}`);
-  }
-
-  if (link) {
-    validateLink(link, title);
-  }
-};
-
-const createChangelogEntries = (
-  entries: readonly ChangelogEntry[],
-): readonly ChangelogEntry[] => {
-  entries.forEach(validateEntry);
-  return Object.freeze(
-    entries.toSorted((a, b) => b.date.localeCompare(a.date)),
-  );
-};
+import {
+  prepareChangelogEntries,
+  type ChangelogEntry,
+} from "../domain/changelog";
 
 const rawChangelogEntries = [
   {
@@ -175,4 +66,4 @@ const rawChangelogEntries = [
   },
 ] as const satisfies readonly ChangelogEntry[];
 
-export const changelogEntries = createChangelogEntries(rawChangelogEntries);
+export const changelogEntries = prepareChangelogEntries(rawChangelogEntries);
