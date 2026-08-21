@@ -74,10 +74,38 @@
 3. 関連先がある場合は、サイト内ページには `link.kind: "internal"` と `link.path`、外部プロダクトには `link.kind: "external"` と `link.url` を設定する。
 4. Home の最新 5 件と `/changelog/` の全件一覧で、表示順、内容、リンク先を確認する。
 
+## 単体テスト
+
+### 対象と配置
+
+- 原則: TypeScript の純粋な関数を対象にする。
+- 配置: 対象モジュールと同じディレクトリに配置する。
+- 命名: `*.test.ts` とする。
+
+### 実行環境
+
+- 原則: Dev Container と CI の標準である Node.js 24 を使用する。
+- 例外: ブラウザ API を使うテストが必要になった場合は、DOM 環境などの追加依存を検討する。
+
+### 実行方法
+
+- 単発実行: `npm test`
+- 継続実行: `npm run test:watch`
+
 ## 検証
 
-- 実装を変更したら、変更内容に応じて `npm run format:check`、`npm run lint`、`npm run build` を実行する。
-- コミット前に `git diff --cached` を確認し、不要なファイルや機密情報が含まれていないことを確認する。
+### 実装変更後
+
+- 原則: 変更内容に応じて次のコマンドを実行する。
+- コマンド:
+  - `npm run format:check`
+  - `npm run lint`
+  - `npm test`
+  - `npm run build`
+
+### コミット前
+
+- `git diff --cached` を確認し、不要なファイルや機密情報が含まれていないことを確認する。
 
 ## コミットメッセージ
 

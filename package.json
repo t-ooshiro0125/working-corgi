@@ -15,6 +15,8 @@
     "lint:styles": "stylelint \"src/**/*.{scss,astro}\"",
     "lint:styles:fix": "stylelint \"src/**/*.{scss,astro}\" --fix",
     "lint": "npm run lint:code && npm run lint:styles",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "format": "prettier --write .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js stylelint.config.mjs package.json .prettierrc.json workingcorgi.code-workspace .github",
     "format:check": "prettier --check .devcontainer .vscode docs src AGENTS.md astro.config.mjs eslint.config.js stylelint.config.mjs package.json .prettierrc.json workingcorgi.code-workspace .github"
   },
@@ -34,6 +36,7 @@
     "stylelint": "^17.14.1",
     "stylelint-config-recess-order": "^7.8.0",
     "stylelint-config-standard-scss": "^17.0.0",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.66.0",
+    "vitest": "^4.1.11"
   }
 }

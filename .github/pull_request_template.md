@@ -17,6 +17,6 @@ Closes #
 - [ ] 関連 Issue のリンク（該当する場合）
 - [ ] 変更差分の自己レビュー
 - [ ] `.env` 等の機密情報が含まれていないこと
-- [ ] `npm run format:check`、`npm run lint`、`npm run build` を実行
+- [ ] `npm run format:check`、`npm run lint`、`npm test`、`npm run build` を実行
 - [ ] ブラウザで表示を確認
 - [ ] 関連ドキュメントの更新要否を確認
