@@ -1,7 +1,7 @@
 ---
 import ChangelogList from "../components/ChangelogList.astro";
 import Layout from "../layouts/Layout.astro";
-import { profiles, site } from "../config/site";
+import { homeNavigationItems, site } from "../config/site";
 import { changelogEntries } from "../data/changelog";
 
 const latestChangelogEntries = changelogEntries.slice(0, 5);
@@ -29,34 +29,35 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
       />
     </section>
 
-    <section class="home__section">
-      <h2 class="home__heading">自己紹介</h2>
-      <p>
-        Web開発を中心に仕事をしながら、個人でもアプリやこのサイトを作っています。
-      </p>
-      <a class="home__more-link" href={`${import.meta.env.BASE_URL}about/`}>
-        About を見る
-      </a>
-    </section>
+    <nav class="home__navigation" aria-label="サイトの案内">
+      <ul class="home__navigation-list" role="list">
+        {
+          homeNavigationItems.map(({ description, label, path }) => (
+            <li class="home__navigation-card">
+              <h2 class="home__heading">{label}</h2>
+              <p>{description}</p>
+              <a
+                class="home__more-link home__navigation-link"
+                href={import.meta.env.BASE_URL + path}
+              >
+                {label} を見る
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
 
-    <section class="home__section">
-      <h2 class="home__heading">制作物</h2>
-      <p>個人で制作・運用しているものを紹介しています。</p>
-      <a class="home__more-link" href={`${import.meta.env.BASE_URL}works/`}>
-        Works を見る
-      </a>
-    </section>
-
-    <section class="home__section">
-      <h2 class="home__heading">今取り組んでいること</h2>
-      <p>
+    <section class="home__current" aria-labelledby="home-current-title">
+      <div class="home__current-copy">
+        <p class="home__current-label">NOW</p>
+        <h2 id="home-current-title" class="home__heading">
+          今取り組んでいること
+        </h2>
+      </div>
+      <p class="home__current-description">
         キャラクターと会話するアプリと、この個人サイトの開発に取り組んでいます。
       </p>
-    </section>
-
-    <section class="home__section">
-      <h2 class="home__heading">好きなこと</h2>
-      <p>トモダチコレクションや、YouTubeの動画を観るのが好きです。</p>
     </section>
 
     <section class="home__section" aria-labelledby="home-changelog-title">
@@ -79,32 +80,6 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
         <ChangelogList entries={latestChangelogEntries} variant="compact" />
       </div>
     </section>
-
-    <section class="home__section">
-      <h2 class="home__heading">リンク</h2>
-      <ul class="home__links" role="list">
-        <li>
-          <a
-            class="home__link button"
-            href={profiles.github.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </li>
-        <li>
-          <a
-            class="home__link button"
-            href={profiles.x.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            X
-          </a>
-        </li>
-      </ul>
-    </section>
   </div>
 </Layout>
 
@@ -122,29 +97,18 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
     padding-block: var(--space-2xl);
   }
 
-  @media (width <= 40rem) {
-    .home__hero {
-      grid-template-columns: 1fr;
-    }
-  }
-
   .home__hero-image {
     justify-self: end;
     width: 100%;
     max-width: 32rem;
     height: auto;
+    border: 0.375rem solid var(--color-surface);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
   }
 
-  @media (width <= 40rem) {
-    .home__hero-image {
-      justify-self: center;
-      max-width: 24rem;
-    }
-  }
-
-  .home__section {
+  .home__section,
+  .home__navigation-card {
     position: relative;
     padding: var(--space-lg);
     overflow: hidden;
@@ -163,6 +127,63 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
       background: var(--color-mustard);
       border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     }
+  }
+
+  .home__navigation-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+    padding: 0;
+  }
+
+  .home__navigation-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home__navigation-link {
+    padding-top: var(--space-lg);
+    margin-top: auto;
+  }
+
+  .home__current {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-accent-soft) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+
+    &::after {
+      position: absolute;
+      right: calc(-1 * var(--space-xl));
+      bottom: calc(-1 * var(--space-xl));
+      width: 9rem;
+      height: 9rem;
+      content: "";
+      background: var(--color-terracotta-soft);
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+  }
+
+  .home__current-copy,
+  .home__current-description {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home__current-label {
+    margin-bottom: var(--space-xs);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent-strong);
+    letter-spacing: 0.12em;
   }
 
   .home__tagline {
@@ -198,23 +219,6 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
     margin-top: var(--space-md);
   }
 
-  .home__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    padding: 0;
-  }
-
-  .home__link {
-    color: var(--color-text);
-    background: var(--color-accent-soft);
-
-    &:hover {
-      color: var(--color-surface);
-      background: var(--color-accent-strong);
-    }
-  }
-
   .home__more-link {
     display: inline-flex;
     align-items: center;
@@ -231,6 +235,38 @@ const latestChangelogEntries = changelogEntries.slice(0, 5);
 
     &:hover::after {
       transform: translateX(0.25rem);
+    }
+  }
+
+  @media (width <= 56rem) {
+    .home__navigation-link {
+      padding-top: var(--space-md);
+    }
+
+    .home__navigation-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (width <= 48rem) {
+    .home__current .home__heading {
+      margin-bottom: 0;
+    }
+
+    .home__current {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (width <= 40rem) {
+    .home__hero {
+      grid-template-columns: 1fr;
+    }
+
+    .home__hero-image {
+      justify-self: center;
+      max-width: 24rem;
     }
   }
 </style>

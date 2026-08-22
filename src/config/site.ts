@@ -33,6 +33,21 @@ const navigationLinks = {
   changelog: { label: "Changelog", path: "changelog/" },
 } as const;
 
+export const homeNavigationItems = [
+  {
+    ...navigationLinks.about,
+    description: "経歴や得意分野など、私について詳しく紹介しています。",
+  },
+  {
+    ...navigationLinks.works,
+    description: "個人で制作・運用しているプロダクトを紹介しています。",
+  },
+  {
+    ...navigationLinks.notes,
+    description: "Web 開発のメモや、日々の記録を掲載しています。",
+  },
+] as const;
+
 export const headerNavigationItems = [
   navigationLinks.home,
   navigationLinks.about,
