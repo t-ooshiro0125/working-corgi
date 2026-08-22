@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 
 import { noteCategoryOgps } from "../../config/noteCategoryOgps";
 import { site } from "../../config/site";
+import GiscusComments from "../../components/GiscusComments.astro";
 import NoteMeta from "../../components/NoteMeta.astro";
 import Layout from "../../layouts/Layout.astro";
 
@@ -53,6 +54,8 @@ const ogImageAlt = note.data.ogImageAlt ?? categoryOgp?.imageAlt;
     <div class="note__content">
       <Content />
     </div>
+
+    <GiscusComments />
 
     <footer class="note__footer">
       <a class="note__back-link" href={`${import.meta.env.BASE_URL}notes/`}>

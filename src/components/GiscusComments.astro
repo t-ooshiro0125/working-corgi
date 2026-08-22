@@ -1,0 +1,54 @@
+---
+import { giscus } from "../config/site";
+
+const contactUrl = `${import.meta.env.BASE_URL}contact/`;
+---
+
+<section class="giscus-comments" aria-label="コメント">
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo={giscus.repo}
+    data-repo-id={giscus.repoId}
+    data-category={giscus.category}
+    data-category-id={giscus.categoryId}
+    data-mapping={giscus.mapping}
+    data-strict={giscus.strict ? "1" : "0"}
+    data-reactions-enabled={giscus.reactionsEnabled ? "1" : "0"}
+    data-emit-metadata="0"
+    data-input-position={giscus.inputPosition}
+    data-theme={giscus.theme}
+    data-lang={giscus.lang}
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+  <p class="giscus-comments__description">
+    コメントの訂正・削除に関するご連絡は、
+    <a href={contactUrl}>Contact</a>からお願いします。
+  </p>
+</section>
+
+<style lang="scss">
+  .giscus-comments {
+    padding-top: var(--space-lg);
+    margin-top: var(--space-2xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .giscus-comments__description {
+    margin-top: var(--space-md);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .giscus-comments__description a {
+    color: var(--color-link);
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.16em;
+  }
+
+  .giscus-comments :global(.giscus) {
+    margin-top: var(--space-lg);
+  }
+</style>

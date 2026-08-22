@@ -5,6 +5,12 @@ import {
 
 const rawChangelogEntries = [
   {
+    date: "2026-08-22",
+    title: "Notes にコメント欄を追加",
+    description:
+      "Notes で、GitHub Discussions を使ったコメントとリアクションを利用できるようにしました。",
+  },
+  {
     date: "2026-08-21",
     title: "Home の情報設計とデザインを改善",
     description:
