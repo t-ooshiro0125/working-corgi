@@ -5,6 +5,12 @@ import {
 
 const rawChangelogEntries = [
   {
+    date: "2026-08-21",
+    title: "Home の情報設計とデザインを改善",
+    description:
+      "サイトの案内、現在取り組んでいること、最近の更新を整理し、目的のページへ移動しやすくしました。",
+  },
+  {
     date: "2026-08-20",
     title: "Changelog ページを追加",
     description:

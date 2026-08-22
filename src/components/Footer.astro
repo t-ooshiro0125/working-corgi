@@ -24,7 +24,6 @@ const { baseUrl } = Astro.props as Props;
       </a>
       <p class="site-footer__description">
         Web開発を中心に仕事をしながら、<br
-          class="site-footer__description-break"
         />個人でもアプリやこのサイトを作っています。
       </p>
     </div>
@@ -44,7 +43,10 @@ const { baseUrl } = Astro.props as Props;
       </ul>
     </nav>
 
-    <nav class="site-footer__nav" aria-label="外部プロフィール">
+    <nav
+      class="site-footer__nav site-footer__nav--profile"
+      aria-label="外部プロフィール"
+    >
       <p class="site-footer__heading">Profile</p>
       <ul class="site-footer__links" role="list">
         {
@@ -111,10 +113,6 @@ const { baseUrl } = Astro.props as Props;
     font-size: 0.875rem;
   }
 
-  .site-footer__description-break {
-    display: block;
-  }
-
   .site-footer__heading {
     margin-bottom: var(--space-xs);
     font-size: 0.75rem;
@@ -125,7 +123,7 @@ const { baseUrl } = Astro.props as Props;
   }
 
   .site-footer__nav {
-    padding-left: var(--space-xl);
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-xl);
     border-left: 1px solid var(--color-border);
   }
 
@@ -134,8 +132,6 @@ const { baseUrl } = Astro.props as Props;
     flex-wrap: wrap;
     gap: var(--space-2xs) var(--space-sm);
     padding: 0;
-    margin: 0;
-    list-style: none;
   }
 
   .site-footer__link {
@@ -173,9 +169,17 @@ const { baseUrl } = Astro.props as Props;
 
   .site-footer__copyright {
     grid-column: 1 / -1;
-    margin: 0;
     font-size: 0.875rem;
     color: var(--color-text-muted);
+  }
+
+  .site-footer__nav--profile {
+    background: color-mix(
+      in srgb,
+      color-mix(in srgb, var(--color-accent-soft) 80%, var(--color-accent)) 35%,
+      transparent
+    );
+    border-radius: var(--radius-md);
   }
 
   @media (width <= 52rem) {
@@ -188,21 +192,26 @@ const { baseUrl } = Astro.props as Props;
     }
 
     .site-footer__nav {
-      padding-left: 0;
+      padding: var(--space-md);
       border-left: 0;
     }
   }
 
   @media (width <= 40rem) {
+    .site-footer__brand {
+      padding: var(--space-md);
+    }
+
     .site-footer__inner {
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
+      gap: 0;
       padding-block: var(--space-lg);
     }
 
     .site-footer__copyright {
       grid-column: auto;
       justify-self: center;
+      margin-top: var(--space-lg);
       text-align: center;
     }
   }
